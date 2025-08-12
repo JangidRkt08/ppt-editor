@@ -14,7 +14,7 @@ export default function Home() {
             href="/editor"
             className="inline-flex items-center rounded-md border border-zinc-300 bg-white px-4 py-2 text-sm shadow-sm hover:bg-zinc-50 text-black"
           >
-            Open Editor
+            Open PPT-Editor
           </Link>
         </div>
       </div>
