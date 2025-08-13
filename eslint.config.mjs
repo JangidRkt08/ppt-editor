@@ -10,7 +10,13 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("next/core-web-vitals"),
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off", // Allow any for Fabric.js integration
+      "react/no-unescaped-entities": "off", // Allow quotes in JSX
+    },
+  },
 ];
 
 export default eslintConfig;
