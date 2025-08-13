@@ -24,8 +24,6 @@ export default function Home() {
           </Link>
 
           <div className="text-xs text-zinc-500 space-y-2">
-            <p>✓ Responsive design for all devices</p>
-            <p>✓ Touch-friendly interface</p>
             <p>✓ Save and load presentations</p>
             <p>✓ Export to PNG format</p>
           </div>
