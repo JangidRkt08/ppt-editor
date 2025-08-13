@@ -1,15 +1,13 @@
-export type Slide = {
+export interface Slide {
   id: string;
   name: string;
-  // Fabric.js JSON for this slide's canvas
-  canvasJSON: unknown | null;
-  // Data URL preview for thumbnails
+  canvasJSON: any;
   thumbnailDataUrl?: string;
-};
+}
 
-export type PresentationState = {
+export interface PresentationState {
   presentationId: string;
   title: string;
   slides: Slide[];
   currentSlideId: string;
-}; 
+}

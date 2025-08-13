@@ -1,83 +1,77 @@
-import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
-import type { PresentationState, Slide } from "./types";
-
-const createInitialSlide = (): Slide => ({
-  id: nanoid(),
-  name: "Slide 1",
-  canvasJSON: null,
-});
-
-const initialSlide = createInitialSlide();
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PresentationState, Slide } from "./types";
+import { nanoid } from "nanoid";
 
 const initialState: PresentationState = {
   presentationId: nanoid(),
-  title: "Untitled Presentation",
-  slides: [initialSlide],
-  currentSlideId: initialSlide.id,
+  title: "My Presentation",
+  slides: [
+    {
+      id: "1",
+      name: "Slide 1",
+      canvasJSON: null,
+      thumbnailDataUrl: undefined,
+    },
+  ],
+  currentSlideId: "1",
 };
 
-export const presentationSlice = createSlice({
+const presentationSlice = createSlice({
   name: "presentation",
   initialState,
   reducers: {
-    addSlide(state) {
-      const slide: Slide = {
+    addSlide: (state) => {
+      const newSlide: Slide = {
         id: nanoid(),
         name: `Slide ${state.slides.length + 1}`,
         canvasJSON: null,
+        thumbnailDataUrl: undefined,
       };
-      state.slides.push(slide);
-      state.currentSlideId = slide.id;
+      state.slides.push(newSlide);
+      state.currentSlideId = newSlide.id;
     },
-    deleteSlide(state, action: PayloadAction<string>) {
-      const idToDelete = action.payload;
-      const idx = state.slides.findIndex((s) => s.id === idToDelete);
-      if (idx === -1) return;
-      state.slides.splice(idx, 1);
-      if (state.slides.length === 0) {
-        const newSlide = createInitialSlide();
-        state.slides.push(newSlide);
-        state.currentSlideId = newSlide.id;
-        return;
+    deleteSlide: (state, action: PayloadAction<string>) => {
+      const slideId = action.payload;
+      if (state.slides.length <= 1) return;
+
+      state.slides = state.slides.filter((s) => s.id !== slideId);
+
+      if (state.currentSlideId === slideId) {
+        state.currentSlideId = state.slides[0]?.id || "1";
       }
-      const nextIdx = Math.min(idx, state.slides.length - 1);
-      state.currentSlideId = state.slides[nextIdx].id;
     },
-    renameSlide(
+    renameSlide: (
       state,
       action: PayloadAction<{ id: string; name: string }>
-    ) {
-      const slide = state.slides.find((s) => s.id === action.payload.id);
-      if (slide) slide.name = action.payload.name;
-    },
-    setCurrentSlide(state, action: PayloadAction<string>) {
-      if (state.slides.some((s) => s.id === action.payload)) {
-        state.currentSlideId = action.payload;
+    ) => {
+      const { id, name } = action.payload;
+      const slide = state.slides.find((s) => s.id === id);
+      if (slide) {
+        slide.name = name;
       }
     },
-    updateSlideCanvas(
+    setCurrentSlide: (state, action: PayloadAction<string>) => {
+      state.currentSlideId = action.payload;
+    },
+    updateSlideCanvas: (
       state,
-      action: PayloadAction<{ id: string; canvasJSON: unknown; thumbnailDataUrl?: string }>
-    ) {
-      const slide = state.slides.find((s) => s.id === action.payload.id);
-      if (!slide) return;
-      slide.canvasJSON = action.payload.canvasJSON;
-      if (action.payload.thumbnailDataUrl) {
-        slide.thumbnailDataUrl = action.payload.thumbnailDataUrl;
+      action: PayloadAction<{
+        slideId: string;
+        canvasJSON: any;
+        thumbnailDataUrl?: string;
+      }>
+    ) => {
+      const { slideId, canvasJSON, thumbnailDataUrl } = action.payload;
+      const slide = state.slides.find((s) => s.id === slideId);
+      if (slide) {
+        slide.canvasJSON = canvasJSON;
+        if (thumbnailDataUrl) {
+          slide.thumbnailDataUrl = thumbnailDataUrl;
+        }
       }
     },
-    setTitle(state, action: PayloadAction<string>) {
-      state.title = action.payload;
-    },
-    loadFromJSON(_state, action: PayloadAction<PresentationState>) {
+    loadFromJSON: (state, action: PayloadAction<PresentationState>) => {
       return action.payload;
-    },
-    reset(state) {
-      const s = createInitialSlide();
-      state.presentationId = nanoid();
-      state.title = "Untitled Presentation";
-      state.slides = [s];
-      state.currentSlideId = s.id;
     },
   },
 });
@@ -88,9 +82,7 @@ export const {
   renameSlide,
   setCurrentSlide,
   updateSlideCanvas,
-  setTitle,
   loadFromJSON,
-  reset,
 } = presentationSlice.actions;
 
-export default presentationSlice.reducer; 
+export default presentationSlice.reducer;

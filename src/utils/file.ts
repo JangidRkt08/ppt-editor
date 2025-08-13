@@ -1,27 +1,33 @@
-export function downloadJSON(filename: string, data: unknown) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], {
-    type: "application/json",
-  });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+export const downloadJSON = (filename: string, data: any) => {
+  const dataStr = JSON.stringify(data, null, 2);
+  const dataBlob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(dataBlob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
   URL.revokeObjectURL(url);
-}
+};
 
-export async function readJSONFile<T = unknown>(file: File): Promise<T> {
-  const text = await file.text();
-  return JSON.parse(text) as T;
-}
+export const downloadDataUrl = (filename: string, dataUrl: string) => {
+  const link = document.createElement("a");
+  link.href = dataUrl;
+  link.download = filename;
+  link.click();
+};
 
-export function downloadDataUrl(filename: string, dataUrl: string) {
-  const a = document.createElement("a");
-  a.href = dataUrl;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-} 
+export const readJSONFile = async (file: File): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string);
+        resolve(json);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
+};

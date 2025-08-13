@@ -1,62 +1,69 @@
-"use client";
-
-import { ButtonHTMLAttributes } from "react";
 import { Save, Upload, ImageDown } from "lucide-react";
-import clsx from "clsx";
+import { downloadJSON, downloadDataUrl, readJSONFile } from "@/utils/file";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { loadFromJSON } from "@/store/presentationSlice";
 
-export type ToolbarProps = {
-  onAddSlide: () => void; // kept in type for future but not shown in UI
-  onDeleteSlide: () => void; // kept in type for future but not shown in UI
+interface ToolbarProps {
   onSaveJSON: () => void;
   onLoadJSON: (file: File) => void;
   onExportImage: () => void;
-};
-
-export function IconButton(
-  props: ButtonHTMLAttributes<HTMLButtonElement> & { active?: boolean }
-) {
-  const { className, active, ...rest } = props;
-  return (
-    <button
-      className={clsx(
-        "inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-800 shadow-sm hover:bg-zinc-50 active:bg-zinc-100 disabled:opacity-50",
-        active && "ring-2 ring-blue-500",
-        className
-      )}
-      {...rest}
-    />
-  );
 }
 
 export default function Toolbar({
   onSaveJSON,
   onLoadJSON,
   onExportImage,
-}: Pick<ToolbarProps, "onSaveJSON" | "onLoadJSON" | "onExportImage">) {
+}: ToolbarProps) {
+  const state = useAppSelector((s) => s.presentation);
+  const dispatch = useAppDispatch();
+
+  const handleLoadJSON = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      try {
+        const json = await readJSONFile(file);
+        dispatch(loadFromJSON(json));
+      } catch (error) {
+        alert(
+          "Error loading file. Please check if it's a valid presentation file."
+        );
+      }
+    }
+  };
+
   return (
-    <div className="flex items-center gap-2 p-2 border-b bg-white sticky top-0 z-10">
-      <IconButton onClick={onSaveJSON} title="Save presentation JSON">
-        <Save size={16} /> Save JSON
-      </IconButton>
-      <label className="cursor-pointer">
-        <span className="sr-only">Load JSON</span>
+    <div className="flex items-center gap-2 p-2 border-b bg-white overflow-x-auto">
+      <button
+        onClick={onSaveJSON}
+        className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex-shrink-0"
+      >
+        <Save size={16} />
+        <span className="sm:inline hidden">Save JSON</span>
+        <span className="sm:hidden">Save</span>
+      </button>
+
+      <label className="cursor-pointer flex-shrink-0">
         <input
           type="file"
-          accept="application/json"
+          accept=".json"
+          onChange={handleLoadJSON}
           className="hidden"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) onLoadJSON(f);
-          }}
         />
-        <span className="inline-flex items-center rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-800 shadow-sm hover:bg-zinc-50">
-          <Upload size={16} /> Load JSON
+        <span className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+          <Upload size={16} />
+          <span className="sm:inline hidden">Load JSON</span>
+          <span className="sm:hidden">Load</span>
         </span>
       </label>
-      <div className="mx-2 h-5 w-px bg-zinc-200" />
-      <IconButton onClick={onExportImage} title="Export current slide as image">
-        <ImageDown size={16} /> Export PNG
-      </IconButton>
+
+      <button
+        onClick={onExportImage}
+        className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 flex-shrink-0"
+      >
+        <ImageDown size={16} />
+        <span className="sm:inline hidden">Export PNG</span>
+        <span className="sm:hidden">Export</span>
+      </button>
     </div>
   );
-} 
+}
