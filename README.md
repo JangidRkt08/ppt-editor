@@ -2,6 +2,25 @@
 
 A slide editor built with Next.js 15 (App Router), TypeScript, Tailwind CSS, Fabric.js v6, and Redux Toolkit. This README doubles as product documentation and an engineering walkthrough so a new teammate can get productive fast.
 
+## 🚀 Live Demo
+**Live Application URL**: [Your deployed URL will go here]
+
+## 📋 Submission Guidelines
+This project is submitted as part of the **Full Stack Task: PowerPoint Editor Application** for MetaUpSpace LLP.
+
+### Required Deliverables ✅
+- ✅ **Public GitHub Repository**: Complete source code available at [Your GitHub Repo URL]
+- ✅ **Comprehensive README.md**: This file with setup instructions and project structure
+- ✅ **Live Deployment**: Hosted application accessible via public URL
+- ✅ **Sample JSON File**: `sample-presentation.json` for testing "load presentation" functionality
+
+### Project Summary
+This PowerPoint Editor application demonstrates full-stack development capabilities with:
+- **Frontend**: Modern React with Next.js 15, TypeScript, and Tailwind CSS
+- **Canvas Engine**: Fabric.js v6 for professional-grade drawing and editing
+- **State Management**: Redux Toolkit for predictable application state
+- **Production Ready**: Proper error handling, performance optimization, and deployment setup
+
 ## Table of Contents
 - [Why this stack](#why-this-stack)
 - [What the app does](#what-the-app-does)
@@ -187,8 +206,48 @@ npm run start   # run the built app on Node
 npm run lint    # lint with Next/TS rules
 ```
 
-Deployment (Vercel):
-- Push to GitHub → Import repo on Vercel → defaults work (build: `next build`, output: `.next`).
+### 🚀 Deployment Instructions
+
+#### Option 1: Vercel (Recommended)
+1. **Push to GitHub**: Ensure your code is in a public GitHub repository
+2. **Connect to Vercel**: 
+   - Go to [vercel.com](https://vercel.com)
+   - Sign up/Login with GitHub
+   - Click "New Project" → Import your repository
+   - Vercel will auto-detect Next.js settings
+3. **Deploy**: Click "Deploy" - Vercel handles the rest automatically
+4. **Get Live URL**: Your app will be available at `https://your-project-name.vercel.app`
+
+#### Option 2: Netlify
+1. **Build Command**: `npm run build`
+2. **Publish Directory**: `.next`
+3. **Environment Variables**: None required for this project
+
+#### Option 3: Railway
+1. **Connect GitHub repo**
+2. **Build Command**: `npm run build`
+3. **Start Command**: `npm start`
+
+### 🔧 Environment Setup
+No environment variables are required for this project. All features work out-of-the-box.
+
+---
+
+## 🧪 Testing the Application
+
+### Testing "Load Presentation" Functionality
+1. **Use the sample file**: Download `sample-presentation.json` from this repository
+2. **In the editor**: Click "Load JSON" button in the toolbar
+3. **Select the file**: Choose the downloaded `sample-presentation.json`
+4. **Verify loading**: The presentation should load with 2 demo slides showing shapes and text
+
+### Testing Core Features
+- ✅ **Create slides**: Use the "+" button in the left sidebar
+- ✅ **Add shapes**: Click rectangle/circle buttons in the toolbar
+- ✅ **Add text**: Click the text button and click on canvas
+- ✅ **Edit objects**: Click and drag to move, resize handles to resize
+- ✅ **Save presentation**: Click "Save JSON" to download your work
+- ✅ **Export PNG**: Click "Export PNG" to save current slide as image
 
 ---
 
