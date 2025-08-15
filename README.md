@@ -23,9 +23,9 @@ This PowerPoint Editor application demonstrates full-stack development capabilit
 - [State management](#state-management)
 - [Canvas engine (Fabric.js)](#canvas-engine-fabricjs)
 - [Styling and design system](#styling-and-design-system)
-- [Build, dev, deploy](#build-dev-deploy)
-- [Troubleshooting](#troubleshooting)
-- [Roadmap / future work](#roadmap--future-work)
+- [Setup and Installation Guide](#-setup-and-installation-guide)
+- [Testing the Application](#-testing-the-application)
+
 
 ---
 
