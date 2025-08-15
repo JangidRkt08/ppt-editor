@@ -3,16 +3,8 @@
 A slide editor built with Next.js 15 (App Router), TypeScript, Tailwind CSS, Fabric.js v6, and Redux Toolkit. This README doubles as product documentation and an engineering walkthrough so a new teammate can get productive fast.
 
 ## 🚀 Live Demo
-**Live Application URL**: [Your deployed URL will go here]
+**Live Application URL**: https://ppt-editor.vercel.app/editor
 
-## 📋 Submission Guidelines
-This project is submitted as part of the **Full Stack Task: PowerPoint Editor Application** for MetaUpSpace LLP.
-
-### Required Deliverables ✅
-- ✅ **Public GitHub Repository**: Complete source code available at [Your GitHub Repo URL]
-- ✅ **Comprehensive README.md**: This file with setup instructions and project structure
-- ✅ **Live Deployment**: Hosted application accessible via public URL
-- ✅ **Sample JSON File**: `sample-presentation.json` for testing "load presentation" functionality
 
 ### Project Summary
 This PowerPoint Editor application demonstrates full-stack development capabilities with:
@@ -194,39 +186,85 @@ Persistence model:
 
 ---
 
-## Build, dev, deploy
+## 🚀 Setup and Installation Guide
 
-Requirements: Node 18+ (recommended LTS)
+### Prerequisites
+- **Node.js**: Version 18 or higher (LTS recommended)
+- **npm**: Comes with Node.js installation
+- **Git**: For cloning the repository
 
-Commands:
+### Step 1: Clone the Repository
 ```bash
-npm run dev     # start dev server (Next.js Turbopack)
-npm run build   # production build (type check + minify)
-npm run start   # run the built app on Node
-npm run lint    # lint with Next/TS rules
+git clone https://github.com/JangidRkt08/ppt-editor.git
+cd ppt-editor
 ```
 
-### 🚀 Deployment Instructions
+### Step 2: Install Dependencies
+```bash
+npm install
+```
 
-#### Option 1: Vercel (Recommended)
-1. **Push to GitHub**: Ensure your code is in a public GitHub repository
-2. **Connect to Vercel**: 
-   - Go to [vercel.com](https://vercel.com)
-   - Sign up/Login with GitHub
-   - Click "New Project" → Import your repository
-   - Vercel will auto-detect Next.js settings
-3. **Deploy**: Click "Deploy" - Vercel handles the rest automatically
-4. **Get Live URL**: Your app will be available at `https://your-project-name.vercel.app`
+This will install all required packages including:
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **Fabric.js v6**: Canvas drawing library
+- **Redux Toolkit**: State management
+- **Lucide React**: Icon library
 
-#### Option 2: Netlify
-1. **Build Command**: `npm run build`
-2. **Publish Directory**: `.next`
-3. **Environment Variables**: None required for this project
+### Step 3: Start Development Server
+```bash
+npm run dev
+```
 
-#### Option 3: Railway
-1. **Connect GitHub repo**
-2. **Build Command**: `npm run build`
-3. **Start Command**: `npm start`
+The application will start on `http://localhost:3000` (or the next available port).
+
+### Step 4: Open in Browser
+Navigate to `http://localhost:3000` in your web browser to access the PowerPoint Editor.
+
+### Available Scripts
+```bash
+npm run dev      # Start development server with hot reload
+npm run build    # Create production build
+npm run start    # Start production server
+npm run lint     # Run ESLint for code quality
+```
+
+### Troubleshooting Common Issues
+
+#### Port Already in Use
+If port 3000 is occupied, Next.js will automatically use the next available port (3001, 3002, etc.). Check the terminal output for the correct URL.
+
+#### Node Version Issues
+Ensure you're using Node.js 18+:
+```bash
+node --version
+```
+If using an older version, update Node.js from [nodejs.org](https://nodejs.org).
+
+#### Dependency Installation Errors
+If `npm install` fails:
+```bash
+# Clear npm cache
+npm cache clean --force
+
+# Delete node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### Build Errors
+If you encounter build errors:
+```bash
+# Check for TypeScript errors
+npx tsc --noEmit
+
+# Run linting
+npm run lint
+```
+
+
+---
 
 ### 🔧 Environment Setup
 No environment variables are required for this project. All features work out-of-the-box.
@@ -250,25 +288,3 @@ No environment variables are required for this project. All features work out-of
 - ✅ **Export PNG**: Click "Export PNG" to save current slide as image
 
 ---
-
-## Troubleshooting
-
-- "Internal Server Error" on `/favicon.ico`: transient when switching dev ports; refresh or restart `npm run dev`.
-- Page freezes after adding text/shape: fixed by using an `isRestoring` guard and debounced save; ensure you’re on the latest commit.
-- If the app starts on a different port (e.g., 3001/3002), open that port shown in the terminal.
-
----
-
-## Roadmap / future work
-
-- Rich text formatting (bold/italic, alignment, bullet lists)
-- Image upload and background images
-- Align/distribute, snap lines, and grouping
-- Undo/redo and history sidebar
-- Templates and themes
-- Persistence to localStorage and/or a backend API
-- Shareable public view link and export to PDF
-
----
-
-If you have questions or want to propose changes, open an issue or PR. This doc aims to give a complete mental model of how the editor is built and how to extend it responsibly.

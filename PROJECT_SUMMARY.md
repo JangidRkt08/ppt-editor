@@ -1,6 +1,6 @@
 # 🎯 PowerPoint Editor - Project Summary
 
-## 📋 Assignment Overview
+## 📋 Project Overview
 **Task**: Full Stack Task - PowerPoint Editor Application  
 **Company**: MetaUpSpace LLP  
 **Position**: Full Stack Developer  
@@ -67,26 +67,14 @@ src/
 - **Performance**: Smooth interactions with no lag or freezing
 - **Error Handling**: Graceful fallbacks for edge cases
 
-## 🚀 Deployment & Hosting
-
-### Supported Platforms
-- **Vercel** (Recommended): Automatic Next.js optimization
-- **Netlify**: Static site hosting with build automation
-- **Railway**: Full-stack deployment platform
-
-### Deployment Features
-- **Zero Configuration**: Automatic build detection and optimization
-- **Global CDN**: Fast loading worldwide
-- **Automatic Updates**: Deploy on every Git push
-- **Free Tier**: No cost for hosting
 
 ## 📊 Technical Metrics
-
+<!-- 
 ### Performance
 - **Bundle Size**: Optimized with Next.js tree shaking
 - **Load Time**: Fast initial page load
 - **Runtime**: Smooth 60fps interactions
-- **Memory**: Efficient canvas rendering
+- **Memory**: Efficient canvas rendering -->
 
 ### Code Quality
 - **TypeScript Coverage**: 100% type safety
@@ -102,7 +90,7 @@ src/
 3. **Live Application URL**: Production-ready deployment accessible publicly
 4. **Sample JSON File**: Test data for "load presentation" functionality
 
-### ✅ Email Submission Ready
+<!-- ### ✅ Email Submission Ready
 - **Subject Line**: `Full Stack Task Submission: PowerPoint Editor Application`
 - **Project Summary**: Comprehensive feature overview
 - **GitHub Link**: Public repository with full source code
@@ -114,7 +102,7 @@ src/
 2. **Update README**: Add your live deployment URL
 3. **Test Everything**: Verify all features work on live version
 4. **Send Email**: Use the provided template with your details
-5. **Follow Up**: Ensure submission is received and acknowledged
+5. **Follow Up**: Ensure submission is received and acknowledged -->
 
 ## 💡 Innovation & Differentiation
 
@@ -125,13 +113,13 @@ src/
 - **Scalability**: Clean architecture ready for future enhancements
 - **Documentation**: Comprehensive guides for developers and users
 
-### Future Enhancement Potential
+<!-- ### Future Enhancement Potential
 - **Real-time Collaboration**: Multi-user editing capabilities
 - **Advanced Formatting**: Rich text, themes, and templates
 - **Cloud Storage**: Integration with cloud services
 - **Mobile App**: Native mobile application
-- **AI Features**: Smart suggestions and auto-formatting
+- **AI Features**: Smart suggestions and auto-formatting -->
 
 ---
 
-**This project demonstrates full-stack development capabilities with a focus on user experience, code quality, and production readiness. Ready for professional review and deployment!** 🎉 
+**This project demonstrates full-stack development capabilities with a focus on user experience, code quality, and production readiness. Ready for professional review and deployment!** 
